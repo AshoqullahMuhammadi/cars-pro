@@ -293,7 +293,20 @@ export default function HomePage() {
             Browse our carefully inspected and analyzed vehicles. Click on any car to view complete details, specifications, and inspection reports.
           </p>
         </div>
-        <CarGrid cars={cars} onViewDetails={setSelectedCar} />
+        {cars.length === 0 && !carsLoaded ? (
+          <div className="text-center py-12">
+            <div className="w-16 h-16 border-4 border-light-primary dark:border-dark-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-light-muted dark:text-dark-muted">Loading cars...</p>
+          </div>
+        ) : cars.length === 0 ? (
+          <div className="text-center py-12 bg-light-surface dark:bg-dark-surface rounded-xl">
+            <p className="text-light-muted dark:text-dark-muted">
+              No cars available at the moment. Please check back later.
+            </p>
+          </div>
+        ) : (
+          <CarGrid cars={cars} onViewDetails={setSelectedCar} />
+        )}
       </section>
 
       {/* Car Details Modal */}
