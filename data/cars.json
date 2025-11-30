@@ -1,0 +1,154 @@
+[
+  {
+    "id": "1",
+    "title": "Toyota Corolla 2019",
+    "year": 2019,
+    "images": [
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop"
+    ],
+    "shortDescription": "Well-maintained, single owner, excellent condition",
+    "specs": {
+      "mileage": "50,000 km",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "1.8L",
+      "color": "Silver",
+      "seats": "5"
+    },
+    "price": "$18,500",
+    "phone": "+93779536908",
+    "inspectionNotes": "Full inspection completed. Engine in excellent condition, no accidents, regular maintenance records available."
+  },
+  {
+    "id": "2",
+    "title": "Honda Civic 2020",
+    "year": 2020,
+    "images": [
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop"
+    ],
+    "shortDescription": "Sporty design, low mileage, perfect for city driving",
+    "specs": {
+      "mileage": "35,000 km",
+      "fuel": "Petrol",
+      "transmission": "CVT",
+      "engine": "1.5L Turbo",
+      "color": "Blue",
+      "seats": "5"
+    },
+    "price": "$22,000",
+    "phone": "+93779536908",
+    "inspectionNotes": "Comprehensive analysis done. All systems functioning perfectly, interior like new, exterior flawless."
+  },
+  {
+    "id": "3",
+    "title": "BMW 3 Series 2018",
+    "year": 2018,
+    "images": [
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop"
+    ],
+    "shortDescription": "Luxury sedan with premium features, well-cared for",
+    "specs": {
+      "mileage": "65,000 km",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L Turbo",
+      "color": "Black",
+      "seats": "5"
+    },
+    "price": "$28,500",
+    "phone": "+93779536908",
+    "inspectionNotes": "Detailed inspection completed. Premium condition, all luxury features working, service history available."
+  },
+  {
+    "id": "4",
+    "title": "Mercedes-Benz C-Class 2019",
+    "year": 2019,
+    "images": [
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop"
+    ],
+    "shortDescription": "Elegant design, advanced technology, excellent performance",
+    "specs": {
+      "mileage": "45,000 km",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L Turbo",
+      "color": "White",
+      "seats": "5"
+    },
+    "price": "$32,000",
+    "phone": "+93779536908",
+    "inspectionNotes": "Full technical analysis done. All advanced features operational, pristine condition, certified pre-owned quality."
+  },
+  {
+    "id": "5",
+    "title": "Audi A4 2020",
+    "year": 2020,
+    "images": [
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop"
+    ],
+    "shortDescription": "Modern design, cutting-edge technology, reliable performance",
+    "specs": {
+      "mileage": "40,000 km",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L TFSI",
+      "color": "Gray",
+      "seats": "5"
+    },
+    "price": "$30,000",
+    "phone": "+93779536908",
+    "inspectionNotes": "Complete inspection performed. Technology package fully functional, excellent mechanical condition, no issues found."
+  },
+  {
+    "id": "6",
+    "title": "Ford Mustang 2017",
+    "year": 2017,
+    "images": [
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop"
+    ],
+    "shortDescription": "Classic American muscle, powerful engine, head-turning design",
+    "specs": {
+      "mileage": "55,000 km",
+      "fuel": "Petrol",
+      "transmission": "Manual",
+      "engine": "5.0L V8",
+      "color": "Red",
+      "seats": "4"
+    },
+    "price": "$35,000",
+    "phone": "+93779536908",
+    "inspectionNotes": "Performance inspection completed. Engine running perfectly, transmission smooth, body in excellent condition."
+  },
+  {
+    "title": "Khan",
+    "year": 2025,
+    "images": [
+      "/uploads/cars/12398_1764518194502_vikp0d7nqf.jpg"
+    ],
+    "shortDescription": "This is simple car for testing",
+    "specs": {
+      "mileage": "1000",
+      "fuel": "Petrol",
+      "transmission": "Manual",
+      "engine": "20",
+      "color": "White",
+      "seats": "5"
+    },
+    "price": "2000",
+    "phone": "+93779536908",
+    "inspectionNotes": "this is notes",
+    "id": "1764518244194"
+  }
+]

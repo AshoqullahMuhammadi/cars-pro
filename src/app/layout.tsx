@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/features/theme";
 import { Layout } from "@/components/Layout";
+import { SessionProvider } from "@/components/SessionProvider";
 import { generateOrganizationStructuredData } from "@/lib/structured-data";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -36,9 +37,11 @@ export default function RootLayout({
             __html: JSON.stringify(organizationData),
           }}
         />
-        <ThemeProvider>
-          <Layout>{children}</Layout>
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider>
+            <Layout>{children}</Layout>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

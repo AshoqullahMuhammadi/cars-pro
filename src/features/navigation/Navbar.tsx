@@ -2,13 +2,15 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { Menu, X, Phone, MessageCircle, LogIn, Plus, LayoutDashboard } from "lucide-react";
 import { ThemeToggle } from "../theme";
 import { WHATSAPP_URL, CALL_URL } from "@/lib/constants";
 import { Logo } from "@/components/Logo";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -37,6 +39,35 @@ export function Navbar() {
               </Link>
             ))}
             <div className="flex items-center space-x-3 ml-4 pl-4 border-l border-gray-200 dark:border-gray-800">
+              {session?.user?.role === "admin" ? (
+                <>
+                  <Link
+                    href="/admin/cars/new"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-light-primary to-light-primary/90 dark:from-dark-primary dark:to-dark-primary/90 text-white hover:from-light-primary/90 hover:to-light-primary/80 dark:hover:from-dark-primary/90 dark:hover:to-dark-primary/80 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 font-medium"
+                    title="Add New Car"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span className="hidden lg:inline">Add Car</span>
+                  </Link>
+                  <Link
+                    href="/admin/dashboard"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-light-text dark:text-dark-text hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors font-medium"
+                    title="Admin Dashboard"
+                  >
+                    <LayoutDashboard className="w-4 h-4" />
+                    <span className="hidden lg:inline">Admin</span>
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  href="/signin"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-light-primary to-light-primary/90 dark:from-dark-primary dark:to-dark-primary/90 text-white hover:from-light-primary/90 hover:to-light-primary/80 dark:hover:from-dark-primary/90 dark:hover:to-dark-primary/80 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 font-medium"
+                  title="Sign In"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span className="hidden lg:inline">Sign In</span>
+                </Link>
+              )}
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -88,6 +119,35 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              {session?.user?.role === "admin" ? (
+                <>
+                  <Link
+                    href="/admin/cars/new"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-light-primary to-light-primary/90 dark:from-dark-primary dark:to-dark-primary/90 text-white hover:from-light-primary/90 hover:to-light-primary/80 dark:hover:from-dark-primary/90 dark:hover:to-dark-primary/80 transition-all font-medium"
+                  >
+                    <Plus className="w-5 h-5" />
+                    <span>Add Car</span>
+                  </Link>
+                  <Link
+                    href="/admin/dashboard"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-light-text dark:text-dark-text hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors font-medium"
+                  >
+                    <LayoutDashboard className="w-5 h-5" />
+                    <span>Admin Dashboard</span>
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  href="/signin"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-light-primary to-light-primary/90 dark:from-dark-primary dark:to-dark-primary/90 text-white hover:from-light-primary/90 hover:to-light-primary/80 dark:hover:from-dark-primary/90 dark:hover:to-dark-primary/80 transition-all font-medium"
+                >
+                  <LogIn className="w-5 h-5" />
+                  <span>Sign In</span>
+                </Link>
+              )}
               <div className="flex space-x-3 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <a
                   href={WHATSAPP_URL}

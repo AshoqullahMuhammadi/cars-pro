@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { MessageCircle, Phone, ChevronLeft, ChevronRight, ArrowDown, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { MessageCircle, Phone, ChevronLeft, ChevronRight, ArrowDown, Sparkles, Plus } from "lucide-react";
 import { CarGrid, CarDetailsModal, useCars } from "@/features/cars";
 import { WHATSAPP_URL, CALL_URL, SERVICE_DESCRIPTION } from "@/lib/constants";
 import { Car } from "@/features/cars/types";
@@ -11,6 +13,7 @@ import { useTheme } from "@/features/theme";
 export default function HomePage() {
   const cars = useCars();
   const { theme } = useTheme();
+  const { data: session } = useSession();
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -19,6 +22,7 @@ export default function HomePage() {
   const featuredCars = cars.slice(0, 3);
   
   const isDark = theme === "dark";
+  const isAdmin = session?.user?.role === "admin";
 
   const nextFeatured = () => {
     if (isAnimating) return;
@@ -287,6 +291,18 @@ export default function HomePage() {
       {/* Car Details Modal */}
       {selectedCar && (
         <CarDetailsModal car={selectedCar} onClose={() => setSelectedCar(null)} />
+      )}
+
+      {/* Floating Add Car Button for Admins */}
+      {isAdmin && (
+        <Link
+          href="/admin/cars/new"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-light-primary to-light-primary/90 dark:from-dark-primary dark:to-dark-primary/90 text-white rounded-full shadow-2xl hover:from-light-primary/90 hover:to-light-primary/80 dark:hover:from-dark-primary/90 dark:hover:to-dark-primary/80 transition-all duration-300 hover:scale-110 group"
+          title="Add New Car"
+        >
+          <Plus className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+          <span className="font-semibold hidden sm:inline">Add Car</span>
+        </Link>
       )}
     </div>
   );
