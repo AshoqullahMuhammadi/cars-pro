@@ -1,25 +1,13 @@
-import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export default withAuth(
-  function middleware(req) {
-    // Additional middleware logic can go here
-    return NextResponse.next();
-  },
-  {
-    callbacks: {
-      authorized: ({ token, req }) => {
-        // Only allow access to admin routes if user is authenticated and is admin
-        if (req.nextUrl.pathname.startsWith("/admin")) {
-          return token?.role === "admin";
-        }
-        return true;
-      },
-    },
-  }
-);
+// Middleware is disabled for static export
+// For static export, we don't need route protection
+export function middleware(request: NextRequest) {
+  // Allow all requests in static export
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: ["/admin/:path*"],
 };
-
