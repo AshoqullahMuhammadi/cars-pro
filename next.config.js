@@ -10,7 +10,10 @@ const nextConfig = {
   // Enable static export for GitHub Pages
   output: isStaticExport ? 'export' : undefined,
   // Base path for GitHub Pages (if using repository name as subdirectory)
-  basePath: isStaticExport && process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}` : '',
+  // Only set basePath if repository name is provided and not the default username.github.io format
+  basePath: isStaticExport && process.env.GITHUB_REPOSITORY 
+    ? (process.env.GITHUB_REPOSITORY.includes('.github.io') ? '' : `/${process.env.GITHUB_REPOSITORY.split('/')[1]}`)
+    : '',
   // Trailing slash for GitHub Pages
   trailingSlash: isStaticExport,
   // Skip API routes and admin pages for static export

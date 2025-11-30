@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Car, LogIn, AlertCircle } from "lucide-react";
+import { LogIn, AlertCircle, Info } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
 export default function SignInPage() {
@@ -13,10 +13,32 @@ export default function SignInPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [isStaticSite, setIsStaticSite] = useState(false);
+
+  useEffect(() => {
+    // Check if we're on a static site (GitHub Pages) by trying to access API
+    fetch("/api/auth/[...nextauth]")
+      .then((res) => {
+        if (res.status === 404) {
+          setIsStaticSite(true);
+        }
+      })
+      .catch(() => {
+        setIsStaticSite(true);
+      });
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    // Check if API is available
+    if (isStaticSite) {
+      setError("Admin features require a server. This is a static site (GitHub Pages). Please deploy to Vercel, Netlify, or similar for full functionality.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const result = await signIn("credentials", {
@@ -66,8 +88,28 @@ export default function SignInPage() {
             </p>
           </div>
 
+          {isStaticSite && (
+            <div className="mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl flex items-start gap-3 text-blue-600 dark:text-blue-400 animate-in slide-in-from-top-2 duration-300">
+              <Info className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold mb-1">Static Site Detected</p>
+                <p className="text-xs">
+                  Admin features require a server. For full functionality, deploy to{" "}
+                  <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="underline font-medium">
+                    Vercel
+                  </a>
+                  {" "}or{" "}
+                  <a href="https://netlify.com" target="_blank" rel="noopener noreferrer" className="underline font-medium">
+                    Netlify
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          )}
+
           {error && (
-            <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2 text-red-600 dark:text-red-400 animate-in slide-in-from-top-2 duration-300">
+            <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl flex items-center gap-2 text-red-600 dark:text-red-400 animate-in slide-in-from-top-2 duration-300">
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
               <span className="text-sm font-medium">{error}</span>
             </div>

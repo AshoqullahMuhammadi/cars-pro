@@ -36,12 +36,28 @@ export function useCar(id: string): Car | undefined {
   const [car, setCar] = useState<Car | undefined>(undefined);
 
   useEffect(() => {
+    // Try API route first, fallback to static JSON for GitHub Pages
     fetch(`/api/cars/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // If API fails, try loading from static JSON
+        throw new Error("API not available");
+      })
       .then((data) => setCar(data))
-      .catch((error) => {
-        console.error("Error fetching car:", error);
-        setCar(undefined);
+      .catch(() => {
+        // Fallback: Load from public JSON file and find the car by ID
+        fetch("/cars.json")
+          .then((res) => res.json())
+          .then((cars: Car[]) => {
+            const foundCar = cars.find((c) => c.id === id);
+            setCar(foundCar);
+          })
+          .catch((error) => {
+            console.error("Error fetching car:", error);
+            setCar(undefined);
+          });
       });
   }, [id]);
 
