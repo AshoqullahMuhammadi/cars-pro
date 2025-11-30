@@ -7,13 +7,25 @@ export function useCars(): Car[] {
   const [cars, setCars] = useState<Car[]>([]);
 
   useEffect(() => {
+    // Try API route first, fallback to static JSON for GitHub Pages
     fetch("/api/cars")
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // If API fails, try loading from static JSON
+        throw new Error("API not available");
+      })
       .then((data) => setCars(data))
-      .catch((error) => {
-        console.error("Error fetching cars:", error);
-        // Fallback to empty array
-        setCars([]);
+      .catch(() => {
+        // Fallback: Load from public JSON file (for static export)
+        fetch("/cars.json")
+          .then((res) => res.json())
+          .then((data) => setCars(data))
+          .catch((error) => {
+            console.error("Error fetching cars:", error);
+            setCars([]);
+          });
       });
   }, []);
 
