@@ -53,7 +53,7 @@ export default function EditCarPage() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-3 bg-gradient-to-br from-light-primary/10 to-light-primary/20 dark:from-dark-primary/10 dark:to-dark-primary/20 rounded-xl">
-            <Car className="w-6 h-6 text-light-primary dark:text-dark-primary" />
+            <CarIcon className="w-6 h-6 text-light-primary dark:text-dark-primary" />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-light-text dark:text-dark-text">
