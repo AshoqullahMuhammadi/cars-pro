@@ -7,6 +7,9 @@ import { Phone, MessageCircle } from "lucide-react";
 import { CALL_URL } from "@/lib/constants";
 import { useParams } from "next/navigation";
 
+// Re-export generateStaticParams for static export
+export { generateStaticParams } from './generateStaticParams';
+
 export default function CarDetailPage() {
   const params = useParams();
   const carId = params?.id as string;
