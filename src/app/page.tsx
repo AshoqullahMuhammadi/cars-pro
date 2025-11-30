@@ -17,12 +17,20 @@ export default function HomePage() {
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [carsLoaded, setCarsLoaded] = useState(false);
 
   // Get featured cars (first 3 for carousel)
-  const featuredCars = cars.slice(0, 3);
+  const featuredCars = cars.length > 0 ? cars.slice(0, 3) : [];
   
   const isDark = theme === "dark";
   const isAdmin = session?.user?.role === "admin";
+
+  // Track when cars are loaded
+  useEffect(() => {
+    if (cars.length > 0) {
+      setCarsLoaded(true);
+    }
+  }, [cars]);
 
   const nextFeatured = () => {
     if (isAnimating) return;

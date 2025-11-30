@@ -12,6 +12,22 @@ interface CarDetailPageClientProps {
 
 export function CarDetailPageClient({ carId }: CarDetailPageClientProps) {
   const car = useCar(carId);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Give time for car to load
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, [car]);
+
+  if (loading && !car) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="w-16 h-16 border-4 border-light-primary dark:border-dark-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-light-muted dark:text-dark-muted">Loading car details...</p>
+      </div>
+    );
+  }
 
   if (!car) {
     return (
@@ -19,9 +35,15 @@ export function CarDetailPageClient({ carId }: CarDetailPageClientProps) {
         <h1 className="text-3xl font-bold text-light-text dark:text-dark-text mb-4">
           Car Not Found
         </h1>
-        <p className="text-light-muted dark:text-dark-muted">
+        <p className="text-light-muted dark:text-dark-muted mb-6">
           The car you're looking for doesn't exist.
         </p>
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-light-primary dark:bg-dark-primary text-white rounded-xl hover:opacity-90 transition-opacity"
+        >
+          Return to Homepage
+        </a>
       </div>
     );
   }
