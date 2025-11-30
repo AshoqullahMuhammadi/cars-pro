@@ -45,3 +45,6 @@ public/uploads/
 .DS_Store
 Thumbs.db
 
+# Temp files for static build
+.temp-exclude/
+

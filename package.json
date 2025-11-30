@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "node scripts/copy-cars-data.js && STATIC_EXPORT=true next build",
+    "build:static": "node scripts/copy-cars-data.js && node scripts/prepare-static-build.js && STATIC_EXPORT=true next build && node scripts/restore-after-build.js",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"
